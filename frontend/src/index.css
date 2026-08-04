@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* IBM Plex Sans — mandated brand typeface (spec). Weights 400/500/600/700
+   cover body copy through display headings without reaching for a
+   second display face. Latin-only subset since the site content is
+   English — avoids shipping unused Cyrillic/Greek/Vietnamese font files. */
+@import "@fontsource/ibm-plex-sans/latin-400.css";
+@import "@fontsource/ibm-plex-sans/latin-500.css";
+@import "@fontsource/ibm-plex-sans/latin-600.css";
+@import "@fontsource/ibm-plex-sans/latin-700.css";
+
+/* IBM Plex Mono — same type superfamily as Plex Sans, used deliberately
+   and sparingly as the utility face for prices, order numbers, SKUs and
+   countdown timers. It's the "price tag / bakery ticket" voice of the
+   UI, not a second brand font. */
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+@import "@fontsource/ibm-plex-mono/latin-600.css";
+
+/*
+  ------------------------------------------------------------------------
+  AFC - Ahmad Foods | Design Tokens
+  ------------------------------------------------------------------------
+  Palette: warm marigold-gold + warm ink-black, per spec's yellow/black/
+  white/gray requirement — deliberately warmed rather than clinical, to
+  read as an artisan sweets & bakery brand rather than a generic SaaS
+  yellow. No gradients anywhere in the system (spec requirement).
+*/
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Primary — Marigold gold (not a generic bright yellow) */
+  --color-marigold-50: #FFF9E8;
+  --color-marigold-100: #FCEDBE;
+  --color-marigold-200: #F7DA85;
+  --color-marigold-300: #F0C24D;
+  --color-marigold-400: #E7A600;
+  --color-marigold-500: #CC9200;
+  --color-marigold-600: #A87700;
+  --color-marigold-700: #7D5900;
+  --color-marigold-800: #563D00;
+
+  /* Secondary — warm ink black (never pure #000) */
+  --color-ink-50: #F7F6F3;
+  --color-ink-100: #EDEAE3;
+  --color-ink-200: #D9D3C6;
+  --color-ink-300: #A69E8C;
+  --color-ink-400: #6E6759;
+  --color-ink-500: #4A4438;
+  --color-ink-600: #322D24;
+  --color-ink-700: #221E18;
+  --color-ink-800: #17140F;
+  --color-ink-900: #0F0D09;
+
+  /* Neutral surface — warm off-white, never clinical pure white */
+  --color-cream: #FFFCF5;
+  --color-cream-dim: #FBF7EC;
+
+  /* Semantic */
+  --color-success: #2F6B3A;
+  --color-danger: #B3261E;
+  --color-info: #2B5A82;
+
+  --radius-card: 0.625rem;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgba(23, 20, 15, 0.06), 0 4px 16px rgba(23, 20, 15, 0.06);
+  --shadow-lifted: 0 8px 30px rgba(23, 20, 15, 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink-800);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible keyboard focus everywhere — accessibility floor per the
+   frontend-design skill's quality bar. */
+:focus-visible {
+  outline: 2px solid var(--color-marigold-400);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+  ------------------------------------------------------------------------
+  Signature element: the "ticket edge" — a scalloped, perforated divider
+  evoking a torn bakery receipt / box seal. Used once, deliberately, as a
+  structural transition (e.g. above the footer), never as decoration
+  scattered throughout the page.
+  ------------------------------------------------------------------------
+*/
+.ticket-edge {
+  position: relative;
+  height: 1.25rem;
+  background-image: radial-gradient(circle at 12px 0, transparent 11px, var(--color-cream) 12px);
+  background-size: 24px 24px;
+  background-repeat: repeat-x;
+  background-position: top center;
+}
+
+.ticket-edge--on-ink {
+  background-image: radial-gradient(circle at 12px 0, transparent 11px, var(--color-ink-800) 12px);
+}
+
+/* Utility: tabular figures for prices / order numbers set in Plex Mono */
+.font-price {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}

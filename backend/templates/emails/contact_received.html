@@ -1,0 +1,7 @@
+{% extends "emails/base_email.html" %}
+{% block content %}
+<h2 style="margin-top:0;color:#000;">We received your message</h2>
+<p>Hi {{ name }},</p>
+<p>Thanks for reaching out to AFC - Ahmad Foods. We've received your message regarding "<strong>{{ subject }}</strong> <br> <strong>{{ message }}</strong>" and our team will get back to you as soon as possible.</p>
+<p style="color:#777;font-size:13px;">If your enquiry is urgent, feel free to call us directly using the phone number listed on our Contact page.</p>
+{% endblock %}
